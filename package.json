@@ -1,0 +1,58 @@
+{
+  "name": "pieshop",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "algoliasearch": "^4.5.1",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "express-session": "^1.17.1",
+    "firebase-admin": "^9.3.0",
+    "firestore-export-import": "0.8.0",
+    "minimist": "^1.2.5",
+    "morgan": "^1.10.0"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "lint:eslint": "eslint src",
+    "lint:stylelint": "stylelint 'src/**/*.css'",
+    "lint": "npm-run-all --continue-on-error lint:eslint lint:stylelint",
+    "build:frontend": "./tasks/build-static.sh",
+    "build:backend": "./tasks/build-node-scripts.sh",
+    "build": "npm-run-all clean build:backend build:frontend",
+    "build:prod": "NODE_ENV=production npm run build",
+    "nodemon:frontend": "nodemon --watch src/client --exec 'npm run build:frontend'",
+    "nodemon:backend:serve": "nodemon --watch src/data --watch src/server --watch src/services --watch src/common --watch src/templates --exec 'npm-run-all build:backend start'",
+    "start:dev": "NODE_ENV=development npm-run-all --parallel nodemon:frontend nodemon:backend:serve",
+    "start": "node dist/server/server.js"
+  },
+  "nodemonConfig": {
+    "ext": "css,hbs,js,json,png,svg"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-minify-webpack-plugin": "^0.3.1",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "copy-webpack-plugin": "6.2.1",
+    "css-loader": "^5.0.0",
+    "csv-parse": "^4.12.0",
+    "eslint": "^7.11.0",
+    "eslint-config-google": "^0.14.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "nodemon": "^2.0.6",
+    "npm-run-all": "^4.1.5",
+    "stylelint": "^13.7.2",
+    "stylelint-config-standard": "^20.0.0",
+    "webpack": "^5.2.0",
+    "webpack-cli": "^4.1.0",
+    "webpack-merge": "^5.2.0",
+    "workbox-webpack-plugin": "^5.1.4"
+  }
+}

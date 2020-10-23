@@ -1,0 +1,11 @@
+<main id="cart">
+
+  <h1>cart</h1>
+
+  {{#if cart.totalQty }}
+    {{> cart }}
+  {{else}}
+    <p>Your cart is empty.</p>
+    <a href="/" title="Go to home page"><button>Continue shopping</button></a>
+  {{/if}}
+</main>
